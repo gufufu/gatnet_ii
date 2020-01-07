@@ -1,33 +1,36 @@
-import React from 'react'
-import {graphql} from 'gatsby'
-import Header from '../components/Header'
-import Footer from '../components/Footer';
+import React from "react"
+import { graphql } from "gatsby"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
 
-const BlogPostLayout = ({data}) => {
-    const post = data.markdownRemark;
-    return (
-        <div>
-            <Header></Header>
-            <div className = "container">
-                <div className = "row justify-content-md-center">
-                    <h1>{post.frontmatter.title}</h1>
-                    <div dangerouslySetInnerHTML={{__html: post.html}} />
-                </div>
-            </div>
-            <Footer></Footer>
+const BlogPostLayout = ({ data }) => {
+  const post = data.wordpressPost;
+  return (
+    <div>
+      <Header></Header>
+      <div className="container">
+        <div className="row justify-content-md-center">
+          <h1 dangerouslySetInnerHTML ={{__html: post.title}} />
+          <div>{post.featured_media.source_url}</div>
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+
         </div>
-    )
+      </div>
+      <Footer></Footer>
+    </div>
+  )
 }
 
 export default BlogPostLayout
 
-export const query = graphql `
-query($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}){
-        html
-        frontmatter {
-            title
-        }
+export const query = graphql`
+  query($slug: String!) {
+    wordpressPost( slug: { eq: $slug }) {
+      content
+      title
+      featured_media {
+        source_url
+      }
     }
-}
+  }
 `

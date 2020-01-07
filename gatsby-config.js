@@ -23,8 +23,11 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: ``
+        baseUrl: `mrsoficina.com`,
+        protocol: `https`,
+        hostingWPCOM: false,
       }
-    }
+    },
+    `gatsby-plugin-react-helmet`
   ],
 }

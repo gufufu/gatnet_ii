@@ -6,7 +6,7 @@ const Post = (props) => (
         <Card>
         <Card.Img variant="top" src = {props.image} />
         <Card.Body>
-            <Card.Title>{props.title}</Card.Title>
+            <Card.Title dangerouslySetInnerHTML={{__html: props.title}} />
             <Card.Text>{props.excerpt}</Card.Text>
             <Button variant="primary" href={props.readMore}>Read More...</Button>
         </Card.Body>
