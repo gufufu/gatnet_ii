@@ -12,6 +12,7 @@ export default ({ data }) => {
             <title>Gatsby Project</title>
             <meta name="description" content="A website created with gatsby and wordpress data sourced." />
             <meta name="keywords" content="gatsby, gatsbyjs, gatsby bootstrap, wordpress, pwa, headlessCMS" />
+            <meta name="robots" content="index, follow" />
         </Helmet>
       {data.allWordpressPost.nodes.map(node => (
         <Post
