@@ -8,6 +8,11 @@ module.exports = {
   /* Your site config here */
   siteMetadata: {
     title: "Gatsby-Bootstrap Project",
+    description: "A website created with gatsby and wordpress data sourced.",
+    keywords: "gatsby, gatsbyjs, gatsby bootstrap, wordpress, pwa, headlessCMS",
+    image: "/static/moto_sm_iii.png",
+    url: "http://sampleurl.net",
+    author: "@gufufu" 
   },
   plugins: [
     {
@@ -18,7 +23,11 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
     },
     {
       resolve: `gatsby-source-wordpress`,
@@ -26,8 +35,18 @@ module.exports = {
         baseUrl: `mrsoficina.com`,
         protocol: `https`,
         hostingWPCOM: false,
+        useACF: false,
+        auth:{},
+        verboseOutput: false,
+        includeRoutes: [
+          "/*/*/posts",
+          "/*/*/media",
+        ],
       }
     },
-    `gatsby-plugin-react-helmet`
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-remark`,
   ],
 }

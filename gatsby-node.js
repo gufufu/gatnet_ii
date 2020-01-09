@@ -1,22 +1,11 @@
 const { createFilePath } = require("gatsby-source-filesystem")
 const path = require("path")
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === "MarkdownRemark") {
-    const slug = createFilePath({ node, getNode, basePath: "posts" })
-    createNodeField({
-      node,
-      name: "slug",
-      value: slug,
-    })
-  }
-}
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return graphql(`
     {
-      allWordpressPost {
+      allWordpressPost(sort:{fields:[date], order:DESC}) {
         nodes {
           slug
         }
@@ -28,9 +17,22 @@ exports.createPages = ({ graphql, actions }) => {
         path: node.slug,
         component: path.resolve("./src/layouts/BlogPostLayout.js"),
         context: {
-          slug: node.slug,
+          slug: node.slug
         },
       })
     })
   })
+}
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
+  
+  if (node.internal.type === "MarkdownRemark") {
+    const slug = createFilePath({ node, getNode, basePath: "posts" })
+    createNodeField({
+      node,
+      name: "slug",
+      value: slug,
+    })
+  }
 }
