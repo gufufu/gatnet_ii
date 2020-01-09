@@ -4,7 +4,7 @@ import footerStyles from '../components/Footer.module.css';
 const Footer = () => (
     <footer className = {footerStyles.footer} >
         <div className = "Container">
-            <span className="text-muted">Bootstrap 2019 test</span>
+            <span className="text-dark">Bootstrap 2019 test</span>
         </div>
     </footer>
 );
