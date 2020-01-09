@@ -5,10 +5,16 @@ const Post = props => (
   <post>
     <div className="p-3">
       <Card>
-        <Card.Img variant="top" src={props.image} alt={props.alt || "default"}/>
+        <Card.Img
+          variant="top"
+          src={props.image}
+          alt={props.alt || "default"}
+        />
         <Card.Body>
           <Card.Title dangerouslySetInnerHTML={{ __html: props.title }} />
-          <Card.Text>{props.excerpt}</Card.Text>
+          <Card.Text>
+            <div dangerouslySetInnerHTML={{ __html: props.excerpt }} />
+          </Card.Text>
           <Button variant="warning" href={props.readMore}>
             Read More...
           </Button>
