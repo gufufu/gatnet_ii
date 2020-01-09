@@ -44,9 +44,21 @@ module.exports = {
         ],
       }
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Gatsby-Bootstrap Project`,
+        short_name: `GatsbyBS`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-remark`,
+    `gatsby-plugin-offline`
   ],
 }
